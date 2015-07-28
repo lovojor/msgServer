@@ -1,4 +1,4 @@
-package org.oncedev.beans;
+package org.oncedev.beans.dto;
 
 import java.util.Map;
 
@@ -7,30 +7,11 @@ import java.util.Map;
  *
  * It store all RQ data to send a message
  */
-public class SendMessageRQ {
-	
-	private int type;
+public class MessageDTO {
 	
 	private String tempateCode;
 	
 	private Map<String, String> params;
-
-	/**
-	 * @return the type of message
-	 */
-	public int getType() {
-		return type;
-	}
-
-	/**
-	 * @param type of message to set.
-	 * 			Values: 1-> email
-	 * 
-	 * 
-	 */
-	public void setType(int type) {
-		this.type = type;
-	}
 
 	/**
 	 * @return the tempateCode

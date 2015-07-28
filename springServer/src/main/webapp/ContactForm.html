@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Prueba de Envío</title>
+<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btnClean").click(function() {
+			$(":input").val("");
+		});
+
+		$("#btnSend").click(function() {
+			var msg = {
+				type : 1,
+				tempateCode : "100",
+				params : {
+					Nombre : $("#firstname").val(),
+					Apellido : $("#lastname").val(),
+					Telefono : $("#phone").val()
+				}
+			};
+
+			ajax('/KMS_Minidatafono/json/msgSrv/send', 'POST', msg).done(function(data) {
+				
+               	var rs = ($.type(data) == 'object' ? data : $.parseJSON(data));
+         		if (rs.errorCode == 0) {
+               		alert('Mensaje Enviado!!!');
+         		} else {
+               		alert('Error al enviar Mensaje', rs.errorCode + ': ' + rs.errorMessage);
+         		}
+      		});
+			
+		});
+	});
+
+	function ajax(uri, method, data) {
+		var request = {
+			url : uri,
+			type : method,
+			contentType : "application/json",
+			cache : false,
+			dataType : 'json',
+			data : JSON.stringify(data),
+			error : function(jqXHR) {
+				alert('Error al Enviar Ajax '+JSON.stringify(jqXHR));
+			}
+		};
+		return $.ajax(request);
+	}
+</script>
+</head>
+<body>
+	<h1>Contactenos</h1>
+	<p>Por favor Llene la información</p>
+	<table>
+		<tbody>
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="firstname" /></td>
+			</tr>
+			<tr>
+				<td>Apellido</td>
+				<td><input type="text" id="lastname" /></td>
+			</tr>
+			<tr>
+				<td>Teléfono</td>
+				<td><input type="text" id="phone" /></td>
+			</tr>
+			<tr>
+				<td><button id="btnClean">Limpiar</button></td>
+				<td><button id="btnSend">Enviar</button></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

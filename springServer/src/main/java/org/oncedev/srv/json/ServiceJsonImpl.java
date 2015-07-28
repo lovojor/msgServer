@@ -6,11 +6,13 @@ import org.oncedev.AppContext;
 import org.oncedev.DefineErrors;
 import org.oncedev.DefineRest;
 import org.oncedev.DefineSpring;
-import org.oncedev.beans.BaseResponse;
-import org.oncedev.beans.SendMessageRQ;
+import org.oncedev.beans.dto.MessageDTO;
+import org.oncedev.beans.srv.BaseResponse;
+import org.oncedev.beans.srv.SendMessageRQ;
 import org.oncedev.bl.MessageSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,7 +56,11 @@ public class ServiceJsonImpl {
 		if (rs.getErrorCode().equals(DefineErrors.OK_CODE)) {
 			MessageSender sender = AppContext.getApplicationContext().getBean(
 					DefineSpring.BL_MESSAGE_SENDER_EMAIL, MessageSender.class);
-			rs.setErrorCode(sender.sendMessage(sendMessageRQ));
+			
+			MessageDTO dto = new MessageDTO();
+			BeanUtils.copyProperties(sendMessageRQ, dto);
+			
+			rs.setErrorCode(sender.sendMessage(dto));
 		}
 
 		rs.setErrorMessage(getMessage(rs.getErrorCode()));

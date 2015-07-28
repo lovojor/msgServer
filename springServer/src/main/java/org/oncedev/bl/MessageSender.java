@@ -3,7 +3,7 @@
  */
 package org.oncedev.bl;
 
-import org.oncedev.beans.SendMessageRQ;
+import org.oncedev.beans.dto.MessageDTO;
 
 /**
  * @author Lovojor
@@ -14,9 +14,9 @@ public interface MessageSender {
 	
 	/**
 	 * 
-	 * @param rq object with message data
+	 * @param message object with message data
 	 * @return a String ErrorCode
 	 */
-	public String sendMessage(SendMessageRQ rq);
+	public String sendMessage(MessageDTO message);
 
 }

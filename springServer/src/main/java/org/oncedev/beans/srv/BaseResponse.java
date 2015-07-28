@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.oncedev.beans;
+package org.oncedev.beans.srv;
 
 /**
  * @author Lovojor

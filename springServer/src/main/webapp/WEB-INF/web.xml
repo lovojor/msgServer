@@ -29,7 +29,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>appServlet</servlet-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/json/*</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file></welcome-file>

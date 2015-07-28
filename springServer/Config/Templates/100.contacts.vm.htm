@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Contáctenos Bakno</title>
+</head>
+<body>
+	<h1>ONCEDEV Test</h1>
+	<br>
+	<p>Gracias por contactarse con nosotros, hemos recibido la
+		información detallada abajo el $date a las $time.</p>
+		
+	<table style="border-color: blue;">
+		<thead>
+			<tr>
+				<td>Nombre</td>
+				<td>Valor</td>
+			</tr>
+		</thead>
+		<tbody>
+			#foreach( $item in $dataList )
+			<tr>
+				<td>$item.name</td>
+				<td>$item.value</td>
+			</tr>
+			#end
+		</tbody>
+	</table>
+</body>
+</html>
